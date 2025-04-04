@@ -1,4 +1,3 @@
-// AboutPage.js
 import React, { useEffect } from 'react';
 import './AboutPage.css';
 import teamImage from '../Assets/team_member.jpg';
@@ -31,14 +30,20 @@ const About = () => {
                     <img src={teamImage} alt="Team" />
                 </div>
                 <div className="description">
-                    <h1 className='aboutweb'>About Our Website</h1>
+                    <h1>About Our Website</h1>
                     <p className='about-para'>
-                        Our Baking AI website is meant to make and enhance your baking simpler. Other recipe websites show ingredient quantities in spoons or cups, but our website provides the precise gram quantities of all ingredients. This helps you with greater accuracy, consistency, and better results in your baking. If you are a beginner experimenting with new recipes or a professional baker looking for perfection, our tool saves you from guesswork and ensures perfect texture, flavor, and presentation. With our easy interface and intelligent AI-based conversion system, baking has never been simpler or more accurate.
+                    Welcome to Accurate Recipes with Precise Gram Measurements! 🧑‍🍳
+
+Unlike most websites that use spoons or cups, our platform gives you AI-powered conversions of every ingredient into exact gram values. This ensures perfect accuracy, consistency, and professional-level baking results every single time. 🎯
+
+Whether you're a home baker just starting out 🍪 or a pro aiming for precision 🍰, our smart system removes the guesswork and saves your time.
+
+With an easy-to-use interface and intelligent backend, baking has never been so simple, smart, and accurate. Say goodbye to rough estimates — and hello to perfect bakes! ✨
                     </p>
                 </div>
             </div>
 
-            <h1 className="fade-in-scroll" style={{ color: "#ff4081" }}>About Our Team</h1>
+            <h1 className="fade-in-scroll">About Our Team</h1>
             <p className="fade-in-scroll">
                 We are a passionate team dedicated to building innovative solutions. Our team specializes in frontend
                 and backend development, with expertise in React, JavaScript, and Python.
@@ -57,7 +62,7 @@ const About = () => {
                 <div className="team-member fade-in-scroll">
                     <h2>Bhavsar Daksh</h2>
                     <p>Role: Frontend Developer & DevOps Engineer</p>
-                    <p>Skills: React, JavaScript, AWS</p>
+                    <p>Skills: React, JavaScript, Docker, AWS, CI/CD Pipelines</p>
                 </div>
             </div>
             <div className="tech-stack fade-in-scroll">

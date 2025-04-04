@@ -3,6 +3,9 @@ import axios from "axios";
 import "./RecipesPage.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const BASE_URL = "https://baking-ai.onrender.com/get-all-recipes";
+const ITEMS_PER_PAGE = 20;
+
 const RecipesPage = () => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
@@ -11,33 +14,32 @@ const RecipesPage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [showDirections, setShowDirections] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
-  const [filteredRecipes, setFilteredRecipes] = useState([]); // State for filtered recipes
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+
+  useEffect(() => {
+    if (!isSearchActive) {
+      fetchRecipes(page);
+    }
+  }, [page]);
+
+  useEffect(() => {
+    if (isSearchActive) {
+      paginateFilteredRecipes();
+    }
+  }, [page, filteredRecipes]);
 
   const fetchRecipes = async (pageNumber) => {
     setLoading(true);
     setError(null);
-
     try {
-      // const response = await axios.get(
-      //   `http://localhost:8080/get-all-recipes?page=${pageNumber}&limit=20`
-      // );
-
-      const response = await axios.get(
-        `https://baking-ai.onrender.com/get-all-recipes`
-      );
-
-
-      // const response = await axios.get(
-      //   `https://8d53-2401-4900-5558-f60c-f446-5f5c-dbc1-a12f.ngrok-free.app`
-      // );
-
-
-      if (response.data && response.data.recipes.length > 0) {
-        setRecipes(response.data.recipes);
-        setFilteredRecipes(response.data.recipes); // Initialize filtered recipes
-        const calculatedTotalPages =
-          response.data.total_pages || Math.ceil(response.data.total_recipes / 20);
+      const response = await axios.get(`${BASE_URL}?page=${pageNumber}&limit=${ITEMS_PER_PAGE}`);
+      const data = response.data;
+      if (data && data.recipes.length > 0) {
+        setRecipes(data.recipes);
+        setFilteredRecipes(data.recipes);
+        const calculatedTotalPages = data.total_pages || Math.ceil(data.total_recipes / ITEMS_PER_PAGE);
         setTotalPages(calculatedTotalPages);
       } else {
         setRecipes([]);
@@ -51,9 +53,51 @@ const RecipesPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchRecipes(page);
-  }, [page]);
+  const fetchAllRecipes = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}?page=1&limit=1000`);
+      return response.data.recipes || [];
+    } catch (error) {
+      console.error("Failed to fetch all recipes");
+      return [];
+    }
+  };
+
+  const handleSearch = async () => {
+    if (!searchQuery.trim()) {
+      setIsSearchActive(false);
+      setPage(1);
+      fetchRecipes(1);
+      return;
+    }
+
+    setLoading(true);
+    const allRecipes = await fetchAllRecipes();
+    const filtered = allRecipes.filter((recipe) =>
+      recipe.Ingredients?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setIsSearchActive(true);
+    setPage(1); // Reset to page 1 for new search
+
+    if (filtered.length === 0) {
+      setFilteredRecipes([]);
+      setTotalPages(1);
+      setError("No recipes found for the given ingredient.");
+    } else {
+      setFilteredRecipes(filtered);
+      setTotalPages(Math.ceil(filtered.length / ITEMS_PER_PAGE));
+      setError(null);
+    }
+
+    setLoading(false);
+  };
+
+  const paginateFilteredRecipes = () => {
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    setRecipes(filteredRecipes.slice(start, end));
+  };
 
   const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
@@ -62,38 +106,15 @@ const RecipesPage = () => {
 
   const calculateTotalGrams = (ingredients) => {
     if (!Array.isArray(ingredients)) return "N/A";
-
     return ingredients.reduce((total, item) => {
       const match = item.match(/=\s?(\d+(\.\d+)?)g/);
       return match ? total + parseFloat(match[1]) : total;
     }, 0);
   };
 
-  const closeModal = () => setSelectedRecipe(null);
-
-  // Filter recipes based on the search query
-  const handleSearch = () => {
-    if (!searchQuery.trim()) {
-      setFilteredRecipes(recipes); // Reset to all recipes if search query is empty
-      return;
-    }
-
-    const filtered = recipes.filter((recipe) =>
-      recipe.Ingredients?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    if (filtered.length === 0) {
-      setError("No recipes found for the given ingredient.");
-    } else {
-      setError(null);
-    }
-
-    setFilteredRecipes(filtered);
-  };
-
   return (
     <div className="container py-5">
-      <h1 className="text-center text-black display-4 mb-4">Delicious Recipes</h1>
+      <h1 className="text-center text-warning display-4 mb-4">Delicious Recipes</h1>
 
       {/* Search Box */}
       <div className="search-container">
@@ -107,10 +128,8 @@ const RecipesPage = () => {
         <button className="search-button" onClick={handleSearch}>
           Search
         </button>
-
       </div>
       <br />
-
 
       {error && <p className="alert alert-danger">{error}</p>}
 
@@ -118,7 +137,7 @@ const RecipesPage = () => {
         <p className="text-center text-info">Loading recipes...</p>
       ) : (
         <div className="row row-cols-1 row-cols-md-4 g-2">
-          {filteredRecipes.map((recipe, index) => (
+          {recipes.map((recipe, index) => (
             <div key={index} className="col">
               <div className="card border-warning shadow-lg recipe-card">
                 <img
@@ -138,6 +157,7 @@ const RecipesPage = () => {
         </div>
       )}
 
+      {/* Pagination */}
       <div className="d-flex justify-content-center mt-4">
         <button
           className="btn btn-warning mx-2"
@@ -146,11 +166,7 @@ const RecipesPage = () => {
         >
           Previous
         </button>
-
-        <span className="text-light">
-          Page {page} of {totalPages}
-        </span>
-
+        <span className="text-light">Page {page} of {totalPages}</span>
         <button
           className="btn btn-warning mx-2"
           onClick={() => setPage((prev) => (page < totalPages ? prev + 1 : totalPages))}
@@ -160,6 +176,7 @@ const RecipesPage = () => {
         </button>
       </div>
 
+      {/* Modal */}
       {selectedRecipe && (
         <div className="modal-overlay d-flex align-items-center justify-content-center">
           <div className="modal-content bg-dark p-4 rounded shadow-lg border border-warning">
@@ -176,7 +193,7 @@ const RecipesPage = () => {
                 Show More
               </button>
             )}
-            <button className="btn btn-danger w-100" onClick={closeModal}>Close</button>
+            <button className="btn btn-danger w-100" onClick={() => setSelectedRecipe(null)}>Close</button>
           </div>
         </div>
       )}

@@ -1,33 +1,36 @@
 import React from 'react';
-import './Homepage.css';
-import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Homepage.css';
 
 function Homepage() {
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleNavigation = (path) => {
-    navigate(path);
-    setIsMenuOpen(false); // Close the menu when a link is clicked
+  const handleGetStarted = () => {
+    navigate('/recipes');
   };
 
   return (
-    <div className="homepage">
-      <main className="main">
-        <div className="content-box">
-          {/* <a href="#" className="learn-more">
-            Discover our new AI-powered recipe generator.
-            <span> Learn more →</span>
-          </a> */}
-          <h1>Generate Delicious Recipes with Your Ingredients</h1>
-          <p>
-            Simply input your available ingredients, select dietary preferences, and let our AI create unique and delicious recipes just for you.
-          </p>
-          <button onClick={() => handleNavigation('/recipes')} >Get started</button>
-        </div>
-      </main>
+    <div className="homepage-container d-flex justify-content-center align-items-center">
+      <div className="container text-center p-5">
+        {/* Set all text to yellow by applying 'animated-text' class */}
+        <h3 className="homepage-heading animated-text">
+        🧑‍🍳 Accurate Recipes with Precise Gram Measurements!
+
+        </h3>
+        <p className="lead animated-text mb-4">
+        No more guessing! Say goodbye to confusing cup-to-gram conversions.
+🥄➡️⚖️ Our AI-powered recipes already include precise gram measurements for every ingredient!
+👨‍🍳 Just select your ingredients, and let our smart system find the perfect, deliciously accurate recipe for you!
+
+🎯 Bake with confidence, cook with precision!        </p>
+        <button 
+          onClick={handleGetStarted} 
+          className="btn btn-primary btn-lg animated-btn"
+        >
+          Get Started
+        </button>
+      </div>
     </div>
   );
 }

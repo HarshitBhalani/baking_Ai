@@ -1,122 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Secular+One&family=Source+Code+Pro&family=Tilt+Neon&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
-
-body {
+/* Font and Box Settings */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  /* background-image: url("https://img.freepik.com/free-photo/view-ready-eat-delicious-meal-go_23-2151431768.jpg?t=st=1742375427~exp=1742379027~hmac=08ec978110384ec55e23f149f44d41fd1f3890d9069a1be23261c397f1130404&w=1380"); */
-  /* background-size: cover; */
-  /* background-repeat: no-repeat; */
-  /* background-attachment: fixed; */
-  /* background-position: center; */
-  /* overflow-y: auto; */
-  scrollbar-width: none;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
- /* overflow: hidden; */
-  height: 100%;
-}
-
-header {
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-main {
-  font-family: 'Secular One', sans-serif;
-  text-align: left;
-  background-color: #210F37;
-  color: #fff;
+/* Page background */
+.homepage-container {
+  background: linear-gradient(to right, #3a3a3a, #2f2f2f);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
+  overflow-x: hidden; /* Prevent full page overflow */
 }
 
-.content-box {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  padding: 60px; /* Increased padding for larger size */
-  border-radius: 15px;
-  max-width: 800px; /* Increased width */
-  width: 80%;
-  min-height: 400px; /* Increased height */
+/* Content box */
+.container {
+  max-width: 850px;
+  width: 100%;
+  padding: 40px 30px;
+  border-radius: 16px;
   text-align: center;
-  color: yellow;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
-
-.learn-more {
-  font-size: 16px;
-  color: #fff;
-  text-decoration: none;
-  display: block;
+/* Yellow animated text */
+.animated-text {
+  color: #ffdd00;
+  animation: fadeIn 1.5s ease-in-out;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   margin-bottom: 10px;
+  word-wrap: break-word;
 }
 
-.learn-more span {
-  color: #007BFF;
-}
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 15px;
-}
-
-p {
-  font-size: 18px;
+/* Heading style */
+.homepage-heading {
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
+  font-weight: 700;
   margin-bottom: 20px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  padding: 0 10px;
+  word-break: break-word;
+  text-align: center;
 }
 
-button {
-  padding: 15px 30px;
-  font-size: 20px;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 25px;
+/* Button styling */
+.animated-btn {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  padding: 12px 28px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  color: #ffdd00;
+  border: 2px solid #ffdd00;
+  background-color: transparent;
   cursor: pointer;
+  margin-top: 25px;
+  font-weight: 600;
 }
 
-button:hover {
-  background-color: #0056b3;
+.animated-btn:hover {
+  background-color: #0077b6;
+  transform: scale(1.08);
+  color: #fff;
+  box-shadow: 0 0 12px #0077b6aa;
 }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ----------------------------- */
+/* Media Queries */
+/* ----------------------------- */
 
 @media (max-width: 768px) {
-  .content-box {
-    padding: 30px;
-    max-width: 90%;
-  }
-  h1 {
-    font-size: 28px;
-  }
-  p {
-    font-size: 16px;
-  }
-  button {
-    font-size: 18px;
+  .container {
+    padding: 30px 20px;
   }
 }
 
-@media (max-width: 480px) {
-  .content-box {
-    padding: 20px;
+@media (max-width: 576px) {
+  .container {
+    padding: 20px 15px;
   }
-  h1 {
-    font-size: 24px;
+
+  .homepage-heading {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    padding: 0 5px;
   }
-  p {
-    font-size: 14px;
+
+  .animated-text {
+    font-size: 0.9rem;
   }
-  button {
-    font-size: 16px;
+
+  .animated-btn {
+    font-size: 0.85rem;
     padding: 10px 20px;
   }
 }
