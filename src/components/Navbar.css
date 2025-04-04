@@ -1,0 +1,139 @@
+/* Navbar.css */
+/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap'); */
+
+/* Base Styles */
+.navbar {
+  font-family: "Secular One", sans-serif;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: #ffd700;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  margin: 5px 0;
+  padding-left: 14px;
+}
+
+.navbar-title:hover {
+  transform: scale(1.05);
+}
+
+.navbar-buttons {
+  display: none; /* Hide buttons by default on small screens */
+  flex-direction: column;
+  position: absolute;
+  top: 60px; /* Adjust as needed */
+  right: 20px;
+  background-color: #333;
+  border-radius: 5px 0px 5px 5px ;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-buttons.show {
+  display: flex; /* Show buttons when 'show' class is present */
+  /* padding-right: 100px; */
+  padding: 0px 20px 10px 20px;
+  /* margin: 10px 0px 0px 0px; */
+  margin: 8px -20px 0px 0px;
+}
+
+.nav-btn {
+  background-color: #6a0dad;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-bottom: 5px;
+}
+
+.nav-btn:hover {
+  background-color: #8a2be2;
+  transform: scale(1.02);
+}
+
+.menu-icon {
+  display: block;
+  cursor: pointer;
+  padding: 10px;
+  padding-right: 21px;
+  position: relative;
+  z-index: 1001;
+}
+
+.menu-icon .bar {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 6px 0;
+  transition: 0.4s;
+  display: block;
+}
+
+.menu-icon.open .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-6px, 6px);
+}
+
+.menu-icon.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.open .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-6px, -6px);
+}
+
+/* Media Query for larger screens */
+@media (min-width: 768px) {
+  .navbar {
+    padding: 15px 50px;
+  }
+
+  .navbar-title {
+    font-size: 2.2rem;
+  }
+
+  .navbar-buttons {
+    display: flex; /* Show buttons on larger screens */
+    flex-direction: row;
+    position: static;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    gap: 10px;
+    /* margin-right: 10px; */
+    margin-right: 70px;
+    margin-left: auto;
+  }
+
+  .nav-btn {
+    padding: 10px 40px;
+    border-radius: 7px;
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+
+  .nav-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .menu-icon {
+    display: none; /* Hide menu icon on larger screens */
+  }
+}

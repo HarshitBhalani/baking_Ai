@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Secular+One&family=Source+Code+Pro&family=Tilt+Neon&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  /* background-image: url("https://img.freepik.com/free-photo/view-ready-eat-delicious-meal-go_23-2151431768.jpg?t=st=1742375427~exp=1742379027~hmac=08ec978110384ec55e23f149f44d41fd1f3890d9069a1be23261c397f1130404&w=1380"); */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
+  /* background-position: center; */
+  /* overflow-y: auto; */
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+ /* overflow: hidden; */
+  height: 100%;
+}
+
+header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+main {
+  font-family: 'Secular One', sans-serif;
+  text-align: left;
+  background-color: #210F37;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.content-box {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 60px; /* Increased padding for larger size */
+  border-radius: 15px;
+  max-width: 800px; /* Increased width */
+  width: 80%;
+  min-height: 400px; /* Increased height */
+  text-align: center;
+  color: yellow;
+}
+
+
+.learn-more {
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.learn-more span {
+  color: #007BFF;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .content-box {
+    padding: 30px;
+    max-width: 90%;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  p {
+    font-size: 16px;
+  }
+  button {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-box {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  p {
+    font-size: 14px;
+  }
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}

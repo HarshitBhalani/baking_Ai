@@ -1,0 +1,218 @@
+/* AboutPage.css */
+/* @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Secular+One&family=Source+Code+Pro&family=Tilt+Neon&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"); */
+/* Apply 75% zoom to the entire webpage */
+body {
+  /* zoom: 75%; */
+  font-family: "Secular One", sans-serif;
+}
+
+.about-container {
+  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+  color: #fff;
+  min-height: 100vh;
+  padding: 50px;
+  text-align: center;
+}
+
+.intro-section {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+  margin-bottom: 230px;
+  margin-top: 200px;
+  margin-left: 130px; /* Adjusted for larger screens */
+  text-align: center;
+}
+
+.left-image img {
+  width: 825px; /* Adjusted for larger screens */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.description {
+  /* text-align:left; */
+  /* max-width: 600px; Adjusted for larger screens */
+  width: 330px; /* Adjusted for larger screens */
+}
+
+.aboutweb {
+  width: 405px;
+  font-size: 3rem; /* Adjusted for larger screens */
+  text-align: center;
+  color: #ff4081;
+  margin-bottom: 20px;
+}
+
+.aboutweb {
+  width: 405px;
+  font-size: 2.8rem; /* Adjusted for larger screens */
+  text-align: center;
+  color: #ff4081;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 26px; /* Adjusted for larger screens */
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.about-para {
+  font-size: 26px; /* Adjusted for larger screens */
+  line-height: 1.6;
+  margin-bottom: 30px;
+  width: 800px; /* Adjusted for larger screens */
+  text-align: justify;
+  color: yellow;
+}
+
+.team-section {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.team-member {
+  background-color: #29293d;
+  border-radius: 15px;
+  padding: 20px;
+  width: 300px; /* Adjusted for larger screens */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.team-member h2 {
+  color: #00bcd4;
+}
+
+.tech-stack {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #33334f;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  /* Tablet */
+  .intro-section {
+    flex-direction: column; /* Stack elements vertically */
+    margin-left: auto; /* Center align */
+    margin-right: auto; /* Center align */
+    gap: 50px; /* Reduce gap between elements */
+    margin-bottom: 100px; /* Reduce bottom margin */
+    margin-top: 100px; /* Reduce top margin */
+  }
+
+  .left-image img {
+    width: 570px; /* Allow image to scale down */
+    /* max-width: 100%; Ensure it doesn't overflow container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Slightly smaller border radius */
+  }
+
+  h1 {
+    font-size: 2.5rem; /* Smaller font size for headings */
+  }
+
+  p,
+  .about-para {
+    font-size: 22px; /* Smaller font size for paragraphs */
+    width: auto; /* Allow width to adjust automatically */
+    max-width: none; /* Remove max-width restriction */
+    text-align: center; /* Center align text on smaller devices */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .team-member {
+    width: 90%; /* Make team members take full width on tablets*/
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile Devices */
+  .intro-section {
+    margin-left: 5%;
+    margin-right: 5%;
+    gap: 40px;
+  }
+
+  body {
+    width: 100%;
+    zoom: 88%;
+  }
+  .aboutweb {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-left: -35px;
+  }
+
+  p,
+  .about-para {
+    font-size: 18px;
+    text-align: justify;
+    align-items: center;
+  }
+
+  .team-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-member {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .left-image img {
+    /* width: 150%; Increased size compared to the container */
+    width: 285px;
+    height: auto;
+    border-radius: 10px;
+    /* margin-left: -25%; Center the larger image */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1428px) {
+  /* Tablet */
+  .intro-section {
+    flex-direction: column; /* Stack elements vertically */
+    margin-left: auto; /* Center align */
+    margin-right: auto; /* Center align */
+    gap: 50px; /* Reduce gap between elements */
+    margin-bottom: 100px; /* Reduce bottom margin */
+    margin-top: 100px; /* Reduce top margin */
+  }
+
+  .left-image img {
+    width: 570px; /* Allow image to scale down */
+    /* max-width: 100%; Ensure it doesn't overflow container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Slightly smaller border radius */
+  }
+
+  h1 {
+    font-size: 2.5rem; /* Smaller font size for headings */
+  }
+
+  p,
+  .about-para {
+    font-size: 22px; /* Smaller font size for paragraphs */
+    width: auto; /* Allow width to adjust automatically */
+    max-width: none; /* Remove max-width restriction */
+    text-align: center; /* Center align text on smaller devices */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .team-member {
+    width: 90%; /* Make team members take full width on tablets*/
+  }
+}
