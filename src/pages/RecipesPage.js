@@ -3,6 +3,8 @@ import axios from "axios";
 import "./RecipesPage.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const BASE_URL = "https://baking-ai.onrender.com/get-all-recipes";
+
 const RecipesPage = () => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState(null);
@@ -11,37 +13,24 @@ const RecipesPage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [showDirections, setShowDirections] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
-  const [filteredRecipes, setFilteredRecipes] = useState([]); // State for filtered recipes
+
+  useEffect(() => {
+    fetchRecipes(page);
+  }, [page]);
 
   const fetchRecipes = async (pageNumber) => {
     setLoading(true);
     setError(null);
-
+    
     try {
-      // const response = await axios.get(
-      //   `http://localhost:8080/get-all-recipes?page=${pageNumber}&limit=20`
-      // );
+      const response = await axios.get(`${BASE_URL}/get-all-recipes?page=${pageNumber}&limit=20`);
+      const data = response.data;
 
-      const response = await axios.get(
-        `https://baking-ai.onrender.com/get-all-recipes`
-      );
-
-
-      // const response = await axios.get(
-      //   `https://8d53-2401-4900-5558-f60c-f446-5f5c-dbc1-a12f.ngrok-free.app`
-      // );
-
-
-      if (response.data && response.data.recipes.length > 0) {
-        setRecipes(response.data.recipes);
-        setFilteredRecipes(response.data.recipes); // Initialize filtered recipes
-        const calculatedTotalPages =
-          response.data.total_pages || Math.ceil(response.data.total_recipes / 20);
-        setTotalPages(calculatedTotalPages);
+      if (data && data.recipes.length > 0) {
+        setRecipes(data.recipes);
+        setTotalPages(data.total_pages || Math.ceil(data.total_recipes / 20));
       } else {
         setRecipes([]);
-        setFilteredRecipes([]);
         setError("No recipes available for this page.");
       }
     } catch (error) {
@@ -51,10 +40,6 @@ const RecipesPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchRecipes(page);
-  }, [page]);
-
   const handleRecipeClick = (recipe) => {
     setSelectedRecipe(recipe);
     setShowDirections(false);
@@ -62,63 +47,22 @@ const RecipesPage = () => {
 
   const calculateTotalGrams = (ingredients) => {
     if (!Array.isArray(ingredients)) return "N/A";
-
     return ingredients.reduce((total, item) => {
       const match = item.match(/=\s?(\d+(\.\d+)?)g/);
       return match ? total + parseFloat(match[1]) : total;
     }, 0);
   };
 
-  const closeModal = () => setSelectedRecipe(null);
-
-  // Filter recipes based on the search query
-  const handleSearch = () => {
-    if (!searchQuery.trim()) {
-      setFilteredRecipes(recipes); // Reset to all recipes if search query is empty
-      return;
-    }
-
-    const filtered = recipes.filter((recipe) =>
-      recipe.Ingredients?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    if (filtered.length === 0) {
-      setError("No recipes found for the given ingredient.");
-    } else {
-      setError(null);
-    }
-
-    setFilteredRecipes(filtered);
-  };
-
   return (
     <div className="container py-5">
-      <h1 className="text-center text-black display-4 mb-4">Delicious Recipes</h1>
-
-      {/* Search Box */}
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-box"
-          placeholder="Search by ingredient..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button className="search-button" onClick={handleSearch}>
-          Search
-        </button>
-
-      </div>
-      <br />
-
-
+      <h1 className="text-center text-warning display-4 mb-4">Delicious Recipes</h1>
       {error && <p className="alert alert-danger">{error}</p>}
 
       {loading ? (
         <p className="text-center text-info">Loading recipes...</p>
       ) : (
         <div className="row row-cols-1 row-cols-md-4 g-2">
-          {filteredRecipes.map((recipe, index) => (
+          {recipes.map((recipe, index) => (
             <div key={index} className="col">
               <div className="card border-warning shadow-lg recipe-card">
                 <img
@@ -139,23 +83,11 @@ const RecipesPage = () => {
       )}
 
       <div className="d-flex justify-content-center mt-4">
-        <button
-          className="btn btn-warning mx-2"
-          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-          disabled={page === 1}
-        >
+        <button className="btn btn-warning mx-2" onClick={() => setPage((prev) => Math.max(prev - 1, 1))} disabled={page === 1}>
           Previous
         </button>
-
-        <span className="text-light">
-          Page {page} of {totalPages}
-        </span>
-
-        <button
-          className="btn btn-warning mx-2"
-          onClick={() => setPage((prev) => (page < totalPages ? prev + 1 : totalPages))}
-          disabled={page >= totalPages}
-        >
+        <span className="text-light">Page {page} of {totalPages}</span>
+        <button className="btn btn-warning mx-2" onClick={() => setPage((prev) => (page < totalPages ? prev + 1 : totalPages))} disabled={page >= totalPages}>
           Next
         </button>
       </div>
@@ -176,7 +108,7 @@ const RecipesPage = () => {
                 Show More
               </button>
             )}
-            <button className="btn btn-danger w-100" onClick={closeModal}>Close</button>
+            <button className="btn btn-danger w-100" onClick={() => setSelectedRecipe(null)}>Close</button>
           </div>
         </div>
       )}
