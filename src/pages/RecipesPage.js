@@ -21,9 +21,9 @@ const RecipesPage = () => {
   const fetchRecipes = async (pageNumber) => {
     setLoading(true);
     setError(null);
-    
+
     try {
-      const response = await axios.get(`${BASE_URL}/get-all-recipes?page=${pageNumber}&limit=20`);
+      const response = await axios.get(`${BASE_URL}?page=${pageNumber}&limit=20`);
       const data = response.data;
 
       if (data && data.recipes.length > 0) {
