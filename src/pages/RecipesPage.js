@@ -204,6 +204,7 @@ const RecipesPage = () => {
                 Show More
               </button>
             )}
+            
             <button className="btn btn-danger w-100" onClick={handleCloseModal}>Close</button>
           </div>
         </div>

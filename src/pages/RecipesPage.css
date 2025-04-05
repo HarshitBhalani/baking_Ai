@@ -48,6 +48,7 @@ body {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+  height: -webkit-fill-available;
 }
 
 /* Search */
