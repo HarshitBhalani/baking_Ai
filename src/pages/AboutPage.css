@@ -43,7 +43,7 @@
 }
 
 .left-image {
-  margin-left: -20px;
+  /* margin-left: 0px; */
   transition: transform 0.3s ease;
 }
 
