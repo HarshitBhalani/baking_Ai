@@ -6,6 +6,7 @@ import ReactPaginate from "react-paginate";
 
 const BASE_URL = "https://baking-ai.onrender.com/get-all-recipes";
 const ITEMS_PER_PAGE = 20;
+// page num updated 20
 
 const SkeletonCard = () => {
   return (
