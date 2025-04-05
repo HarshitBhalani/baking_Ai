@@ -57,7 +57,7 @@ With an easy-to-use interface and intelligent backend, baking has never been so 
                 <div className="team-member fade-in-scroll">
                     <h2>Harshit Bhalani</h2>
                     <p>Role: Frontend Developer</p>
-                    <p>Skills: JavaScript, React, UI/UX Design</p>
+                    <p>Skills: JavaScript, React, UI/UX Design, RESTful APIs</p>
                 </div>
                 <div className="team-member fade-in-scroll">
                     <h2>Bhavsar Daksh</h2>
