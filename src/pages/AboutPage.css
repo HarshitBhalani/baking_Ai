@@ -1,32 +1,20 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
-/* Basic Reset */
+@import url('https://fonts.googleapis.com/css2?family=Glory:wght@400;600;700&display=swap');
+
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
-
-*{
-  font-family: 'Secular One';
-}
-
 /* Main Container */
 .about-container {
-  /* background: linear-gradient(135deg, #1e1e2f, #2d2d44); */
-  background: linear-gradient(to right, #3a3a3a, #2f2f2f);
-  /* font-family:'Courier New', Courier, monospace; */
-  /* font-family: "Secular One", sans-serif !important; */
-
+  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
   color: #fff;
   min-height: 100vh;
   padding: 20px;
   text-align: center;
-  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Glory', sans-serif;
   animation: fadeIn 1.5s ease-out;
 }
 
@@ -34,16 +22,15 @@
 .intro-section {
   display: flex;
   align-items: center;
-  gap: 30px;
-  margin-top: 50px;
-  margin-bottom: 100px;
   justify-content: center;
-  text-align: center;
+  gap: 30px;
+  margin: 50px auto 100px;
+  flex-wrap: wrap;
   animation: slideUp 1.5s ease-out;
 }
 
 .left-image {
-  /* margin-left: 0px; */
+  margin-left: -20px;
   transition: transform 0.3s ease;
 }
 
@@ -59,22 +46,24 @@
 }
 
 .description {
-  
-  width: 280px;
+  width: 300px;
   animation: fadeIn 1.5s ease-out;
 }
 
+/* Heading */
 h1 {
+  font-family: 'Glory', sans-serif;
+  font-weight: 700;
   font-size: 2rem;
   color: #ff4081;
   margin-bottom: 15px;
   animation: slideInFromLeft 1s ease-in-out;
   white-space: nowrap;
-  overflow: visible;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
+/* Paragraphs */
 p {
   font-size: 18px;
   line-height: 1.6;
@@ -83,15 +72,14 @@ p {
   animation: fadeIn 2s ease-out;
 }
 
+/* Highlight Paragraph */
 .about-para {
-  
   font-size: 16px;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin: 20px auto;
   width: 450px;
   text-align: justify;
   color: #ffcc00;
-  margin-left: 20px;
   animation: fadeIn 2s ease-out;
   transition: transform 0.3s ease;
 }
@@ -102,17 +90,15 @@ p {
 
 /* Team Section */
 .team-section {
-  
   display: flex;
   justify-content: center;
   gap: 15px;
+  flex-wrap: wrap;
   animation: fadeIn 2s ease-out;
 }
 
 .team-member {
-  background: rgba(0, 0, 0, 0.4);
-
-  /* background-color: #29293d; */
+  background-color: #29293d;
   border-radius: 15px;
   padding: 20px;
   width: 220px;
@@ -128,14 +114,14 @@ p {
 .team-member h2 {
   color: #00bcd4;
   font-size: 18px;
+  margin-bottom: 10px;
 }
 
+/* Tech Stack Box */
 .tech-stack {
   margin-top: 20px;
   padding: 10px;
-  /* background-color: #33334f; */
-  background: rgba(0, 0, 0, 0.4);
-
+  background-color: #33334f;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
@@ -144,43 +130,33 @@ p {
 @media (max-width: 1024px) {
   .intro-section {
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
     gap: 20px;
-    margin-bottom: 60px;
-    margin-top: 50px;
+    margin: 50px auto 60px;
   }
 
   .left-image img {
     width: 450px;
-    height: auto;
     border-radius: 10px;
   }
 
-  h1 {
-    font-size: 1.8rem;
+  .description {
+    width: 90%;
   }
 
-  p, .about-para {
-    font-size: 14px;
-    width: auto;
+  .about-para {
+    font-size: 15px;
+    width: 90%;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 5%;
-    padding-right: 5%;
   }
 
   .team-member {
-    width: 80%;
+    width: 60%;
   }
 }
 
 @media (max-width: 768px) {
-  .intro-section {
-    margin-left: 5%;
-    margin-right: 5%;
-    gap: 15px;
+  .left-image img {
+    width: 300px;
   }
 
   h1 {
@@ -188,7 +164,9 @@ p {
   }
 
   p, .about-para {
-    font-size: 12px;
+    font-size: 13px;
+    width: 100%;
+    padding: 0 10px;
     text-align: justify;
   }
 
@@ -201,82 +179,43 @@ p {
     width: 90%;
     margin-bottom: 10px;
   }
-
-  .left-image img {
-    width: 250px;
-    height: auto;
-    border-radius: 10px;
-  }
 }
 
 @media (max-width: 480px) {
-  .intro-section {
-    margin-left: 0;
-    margin-right: 0;
-    gap: 10px;
-  }
-
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
-  p, .about-para {
-    font-size: 10px;
+  .left-image img {
+    width: 250px;
+  }
+
+  .about-para {
+    font-size: 12px;
   }
 
   .team-member {
     width: 95%;
-    padding: 10px;
   }
+}
 
-  .left-image img {
-    width: 280px;
-    height: auto;
-    border-radius: 10px;
-    
-  }
+/* Bootstrap Override */
+.container-custom {
+  padding-left: 10px;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes slideUp {
-  0% {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Additional Styles for Fade-In-Scroll */
-.fade-in-scroll {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.fade-in-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
+  0% { transform: translateX(-100px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }

@@ -30,7 +30,8 @@ const About = () => {
                     <img src={teamImage} alt="Team" />
                 </div>
                 <div className="description">
-                    <h1 style={{  color: "#ff4081"}}>About Our Website</h1>
+                <h1 className='abtweb' style={{ color: "#ff4081", marginLeft: "20px" }}>About Our Website</h1>
+
                     <p className='about-para'>
                     Welcome to Accurate Recipes with Precise Gram Measurements! 🧑‍🍳
 
